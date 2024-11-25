@@ -87,8 +87,8 @@ resource "aws_security_group" "vpn_security_group" {
 
   ingress {
     description = "OpenVPN"
-    from_port   = 1194
-    to_port     = 1194
+    from_port   = var.vpn_connection_port
+    to_port     = var.vpn_connection_port
     protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -109,7 +109,7 @@ resource "aws_security_group" "vpn_security_group" {
 # EC2 Instance
 resource "aws_instance" "vpn_instance" {
   ami                         = data.aws_ami.amazon_linux.id
-  instance_type               = var.instance_type
+  instance_type               = var.instance_type_arm64
   subnet_id                   = aws_subnet.vpn_subnet.id
   vpc_security_group_ids      = [aws_security_group.vpn_security_group.id]
   key_name                    = aws_key_pair.vpn_key_pair.key_name

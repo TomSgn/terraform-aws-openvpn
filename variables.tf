@@ -16,7 +16,7 @@ variable "aws_region" {
 
 variable "public_key_path" {
   description = "Path to your SSH public key."
-  default     = "~/.ssh/id_rsa.pub"
+  default     = "~/.  git remote set-url origin git@github.com:TomSgn/terraform-aws-openvpn.git/id_rsa.pub"
 }
 
 variable "instance_type" {
